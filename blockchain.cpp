@@ -2,7 +2,7 @@
 
 Blockchain::Blockchain() { //blockchain constructor
     _vChain.emplace_back(Block(0, "Genesis Block")); //genesis block is added to _vChain vector
-    _nDifficulty = 6;
+    _nDifficulty = 1;
 }
 
 void Blockchain::AddBlock(Block bNew) {

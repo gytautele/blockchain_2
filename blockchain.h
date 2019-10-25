@@ -1,8 +1,13 @@
 #include <cstdint>
 #include <vector>
+#include <iostream>
+#include <sstream>
 #include "block.h"
 
 using std::vector;
+using std::cout;
+using std::endl;
+using std::stringstream;
 
 class Blockchain {
 public:

@@ -1,7 +1,11 @@
 #include <cstdint>
 #include <iostream>
+#include <sstream>
 
 using std::string;
+using std::cout;
+using std::endl;
+using std::stringstream;
 
 class Block {
 public:

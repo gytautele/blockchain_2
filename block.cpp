@@ -1,4 +1,5 @@
 #include "block.h"
+#include "sha256.h"
 
 Block::Block(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIndexIn), _sData(sDataIn) { //block constructor
     _nNonce = -1;
@@ -32,5 +33,3 @@ inline string Block::_CalculateHash() const { //inline makes the code more effic
 
     return sha256(ss.str()); //returned output of the sha256 using the string output from the string stream
 }
-
-//penktadienį 17:00 1,30 reikia tvirtoves g. 16, zalias namas
