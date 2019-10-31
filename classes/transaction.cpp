@@ -23,11 +23,6 @@ void Transaction::SetTransaction(int amount, string from, string to)
 void Trans(User x, User y, int amount, vector<Transaction>& AllTrans)
 {
 	int size = AllTrans.size();
-	if(x.GetBling() >= amount)
-	{
-		x.SetBling(x.GetBling() - amount);
-		y.SetBling(y.GetBling() + amount);
-		AllTrans.push_back(Transaction());
-		AllTrans[size].SetTransaction(amount, x.GetName(), y.GetName());
-	}
+	AllTrans.push_back(Transaction());
+	AllTrans[size].SetTransaction(amount, x.GetKey(), y.GetKey());
 }

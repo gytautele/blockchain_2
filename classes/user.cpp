@@ -39,12 +39,13 @@ void kurimas(vector <User>& vartotojai, vector <Transaction>& Visos)
 	std::random_device r;
 	std::default_random_engine el(r());
 	std::uniform_int_distribution<int> uniform_dist(1, 1000);
+	std::uniform_int_distribution<int> uni(1, 100000);
 
 	int amount = 0, x, y;
 
 	while (Visos.size() != 10000)
 	{
-		amount = uniform_dist(el);
+		amount = uni(el);
 		x = uniform_dist(el) - 1;
 		do
 		{
@@ -52,12 +53,21 @@ void kurimas(vector <User>& vartotojai, vector <Transaction>& Visos)
 
 		} while (x == y);
 
-		if (vartotojai[x].GetBling() >= amount)
-			Trans(vartotojai[x], vartotojai[y], amount, Visos);
+		Trans(vartotojai[x], vartotojai[y], amount, Visos);
 	}
 }
 
-void atrinkimas(vector <Transaction>& Visos, vector <Transaction>& Atrinktos)
+bool validavimas(vector <User>& vartotojai, Transaction Parinkta)
+{
+	for (int i = 0; i < vartotojai.size(); i++)
+	{
+		if (vartotojai[i].GetKey() == Parinkta.GetFrom() && vartotojai[i].GetBling() < Parinkta.GetAmount())
+			return true;
+	}
+	return false;
+}
+
+void atrinkimas(vector <Transaction>& Visos, vector <Transaction>& Atrinktos, vector <User>& vartotojai)
 {
 	std::random_device r;
 	std::default_random_engine el(r());
@@ -65,39 +75,56 @@ void atrinkimas(vector <Transaction>& Visos, vector <Transaction>& Atrinktos)
 
 	int x;
 
-	bool error = false;
+	bool Repeat_error = false, Val_error = false;
 
 	vector <Transaction> temp;
 
-	while (Atrinktos.size() != 100)
+	while ( !((Atrinktos.size() == 100) || (Atrinktos.size() == Visos.size())))
 	{
 		x = uniform_dist(el);
-		for (int i = 0; i < temp.size(); i++)
+
+		Val_error = validavimas(vartotojai, Visos[x]);
+
+		if (Val_error)
 		{
-			if (temp[i].GetID() == Visos[x].GetID())
-			{
-				error = true;
-				break;
-			}
-		}
-		if (!error)
-		{
-			Atrinktos.push_back(Visos[x]);
-			temp.push_back(Visos[x]);
+			Visos.erase(Visos.begin() + x);
+			Val_error = false;
 		}
 		else
-			error = false;
+		{
+			for (int i = 0; i < temp.size(); i++)
+			{
+				if (temp[i].GetID() == Visos[x].GetID())
+				{
+					Repeat_error = true;
+					break;
+				}
+			}
+			if (!Repeat_error)
+			{
+				Atrinktos.push_back(Visos[x]);
+				temp.push_back(Visos[x]);
+			}
+			else
+				Repeat_error = false;
+		}
 	}
+	cout << Atrinktos.size() << "  " << Visos.size() << endl;
 }
 
-void BlokoKurimas(vector<Transaction>& Visos, MyChain& Blocky, uint32_t& index, bool& found)
+void BlokoKurimas(vector<Transaction>& Visos, vector<User>& vartotojai, MyChain& Blocky, uint32_t& index, bool& found, size_t& MaxNonce, int i)
 {
 fail:
 	vector<Transaction> A;
-	atrinkimas(Visos, A);
+
+	atrinkimas(Visos, A, vartotojai);
+
 	bool error = false;
+
 	int k = 0;
+
 	string test;
+
 	for (int i = 0; i < A.size(); i++)
 	{
 		stringstream ss;
@@ -113,8 +140,7 @@ fail:
 	}
 	if (error)
 	{
-		cout << "Sugadinta tranakcija" << endl;
-		error = false;
+		cout << "Sugadinta transkcija" << endl;
 		goto fail;
 	}
 
@@ -151,7 +177,7 @@ fail:
 					}
 				}
 			}
-			cout << "MyBlock mined from B: " << B.GetHash() << endl;
+			cout << "MyBlock iskastas is " << i + 1 << " bloko: " << B.GetHash() << endl;
 			break;
 		}
 	}

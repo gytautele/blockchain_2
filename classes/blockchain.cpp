@@ -3,14 +3,19 @@
 int main()
 {
 	MyChain Blocky = MyChain();
+
 	vector <User> vartotojai;
+
 	vector <Transaction> Visos;
 	vector <Transaction> Atrinktos;
+
 	skaitymas(vartotojai);
+
+	size_t MaxNonce = 100;
 
 	uint32_t index = 2;
 
-	bool error = false, found = false;
+	bool found = false;
 
 	kurimas(vartotojai, Visos);
 
@@ -18,15 +23,18 @@ int main()
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			BlokoKurimas(Visos, Blocky, index, found);
+			BlokoKurimas(Visos, vartotojai, Blocky, index, found, MaxNonce, i);
 			if (found)
 			{
 				index++;
 				break;
 			}
+			else if (!found)
+			{
+				cout << "Nepavyko iskasti " << i + 1 << " bloko" << endl;
+				MaxNonce += 100;
+			}
 		}
-		if (!found)
-			cout << "Nepavyko iskasti naujo bloko" << endl;
 		found = false;
 	}
 }

@@ -21,10 +21,6 @@ using std::string;
 using std::vector;
 using std::stringstream;
 
-//define
-
-#define MaxNonce 1000
-
 //classes
 
 class Transaction
@@ -149,7 +145,6 @@ string Convertion(char[]);
 void skaitymas(vector <User> &Users);
 void Trans(User x, User y, int amount, vector <Transaction>& AllTrans);
 void kurimas(vector <User>& vartotojai, vector <Transaction>& Visos);
-void atrinkimas(vector <Transaction>& Visos, vector <Transaction>& Atrinktos);
-void BlokoKurimas(vector<Transaction>& Visos, MyChain& Blocky, uint32_t& index, bool& found);
-
+void atrinkimas(vector <Transaction>& Visos, vector <Transaction>& Atrinktos, vector <User>& vartotojai);
+void BlokoKurimas(vector<Transaction>& Visos, vector<User>& vartotojai, MyChain& Blocky, uint32_t& index, bool& found, size_t& MaxNonce, int i);
 #endif
