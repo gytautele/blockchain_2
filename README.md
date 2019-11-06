@@ -22,8 +22,8 @@ Reikalavimai trečiai versijai:
 
 ### v.01
 
-* Pirminis supratimas apie Blockchain. Ne visos funkcijos pridėtos, tai itk pirminė versija.
+* Pirminis supratimas apie Blockchain. Ne visos funkcijos pridėtos, tai tik pirminė versija, kuroje realizuota blockchain struktūra ir jų mine'ninimas.
 
 ### v.02
 
-* Pakeista programos struktūra, iš esmės perdaryta programa. Ištaisyta, kad atitiktų reikalavimus. Pridėta naujų funkcijų ir naujų class'ių.
+* Pakeista programos struktūra, iš esmės perdaryta programa, nors struktūra išlieka panaši. Pridėta user'io, mychain, transakcijų klasės. Ištaisyta, kad atitiktų reikalavimus.
