@@ -9,15 +9,6 @@ Pirminė užduotis:
 * suradus tokį naujo bloko hash'ą, bloką pridėti prie grandinės
 * kartoti tol, kol yra laisvų transakcijų
 
-Reikalavimai antrai versijai:
-* atlikti transakcijų pool'e esančių transakcijų verifikavimą.
-* patikrinti balansą.
-* patikrinti transakcijos hash'ą.
-* patobulinti blokų kasimo (mininimo) procesą pagal pateiktą logiką.
-
-Reikalavimai trečiai versijai:
-* Nuo šios versijos yra būtina turėti prieigą prie pilno Bitcoin mazgo (angl. Bitcoin full node).
-
 ## Versijavimas
 
 ### v.01
@@ -27,3 +18,13 @@ Reikalavimai trečiai versijai:
 ### v.02
 
 * Pakeista programos struktūra, iš esmės perdaryta programa, nors struktūra išlieka panaši. Pridėta user'io, mychain, transakcijų klasės. Ištaisyta, kad atitiktų reikalavimus.
+* atlikta transakcijų pool'e esančių transakcijų verifikavimas
+* patikrinti balansas
+* patikrinti transakcijos hash'as
+* patobulintas blokų kasimo (mininimo) procesas pagal pateiktą logiką
+
+### v.03
+
+* Nuo šios versijos yra būtina turėti prieigą prie pilno Bitcoin mazgo (angl. Bitcoin full node).
+* Įsidiegta biblioteka *libbitcoin-system: Bitcoin Cross-Platform C++ Development Toolkit
+* Adaptuota merkle tree funkcija programiniame kode
