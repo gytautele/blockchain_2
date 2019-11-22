@@ -6,7 +6,7 @@ int main()
 
 	vector <User> vartotojai;
 
-	vector <Transaction> Visos;
+	   vector <Transaction> Visos;
 	vector <Transaction> Atrinktos;
 
 	skaitymas(vartotojai);

@@ -82,6 +82,10 @@ private:
 	vector<Transaction> Data_;
 	string Hash_;
 	time_t Time_;
+	string merkle_;
+
+	void CreateMerkel();
+
 	string CalculateHash() const;
 };
 
@@ -100,6 +104,8 @@ public:
 private:
 	uint32_t Difficulty_;
 	vector<MyBlock> Chain_;
+    
+    MyBlock GetAnyBlock(int i) const;
 
 	MyBlock GetLastBlock() const;
 };

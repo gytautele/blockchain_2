@@ -24,3 +24,9 @@ MyBlock MyChain::GetLastBlock() const
 {
 	return Chain_.back();
 }
+
+MyBlock MyChain::GetAnyBlock(int i) const
+{
+	if(Chain_.size() > i)
+		return Chain_[i];
+}
