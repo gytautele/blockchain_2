@@ -14,6 +14,7 @@ Pirminė užduotis:
 ### v.01
 
 * Pirminis supratimas apie Blockchain. Ne visos funkcijos pridėtos, tai tik pirminė versija, kuroje realizuota blockchain struktūra ir jų mine'ninimas.
+Programa pasileidžia naudojant ```g++ block.cpp blockchain.cpp main.cpp sha256.cpp -o programa```
 
 ### v.02
 
